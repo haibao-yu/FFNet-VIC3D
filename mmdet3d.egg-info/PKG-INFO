@@ -1,3 +1,25 @@
+Metadata-Version: 2.1
+Name: mmdet3d
+Version: 0.17.1
+Summary: OpenMMLab's next-generation platformfor general 3D object detection.
+Home-page: https://github.com/open-mmlab/mmdetection3d
+Author: MMDetection3D Contributors
+Author-email: zwwdev@gmail.com
+License: Apache License 2.0
+Keywords: computer vision,3D object detection
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Provides-Extra: all
+Provides-Extra: tests
+Provides-Extra: build
+Provides-Extra: optional
+
 ![Python 3.7](https://img.shields.io/badge/python-3.7-green.svg)
 
 # FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D DETECTION VIA FEATURE FLOW PREDICTION
@@ -44,15 +66,14 @@ cd FFNET-VIC3D && pip install -e . --user
 
 Download `trained weights`. 
 (
-[FFNET Trainded Checkpoint](https://drive.google.com/file/d/14dADaW2xcf6Ug1X-ve75VZGMrnDUvAbO/view?usp=sharing) | [Basemodel Trainded Checkpoint](https://drive.google.com/file/d/1fbiNFaejwAbCR2lih9UitzUtqrfec8gg/view?usp=sharing) 
-| [Basemodel(same TC) Trainded Checkpoint](https://drive.google.com/file/d/1WnEMKL5k2RupgWuiTi41IvupNbjttYue/view?usp=sharing)
+[google drive](https://drive.google.com/file/d/14dADaW2xcf6Ug1X-ve75VZGMrnDUvAbO/view?usp=sharing)
 )
 
 Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 200ms latency:
 
 ```
 # Single-gpu testing
-python tools/test.py ffnet_work_dir/config_ffnet.py /path/to/ffnet_checkpoint_file
+python tools/test.py ffnet_work_dir/config_ffnet.py /path/to/checkpoint_file
 ```
 
 ## Training
@@ -71,3 +92,4 @@ Thirdly, train ```FFNET``` on ```DAIR-V2X``` with latenncy
 # Single-gpu training
 python tools/train.py ffnet_work_dir/config_ffnet.py  
 ```
+
