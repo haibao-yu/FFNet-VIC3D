@@ -25,7 +25,7 @@ We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/
 ## Installation
 
 For install, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
-For data, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest)
+For data, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest). We provide the example data [example-cooperative-vehicle-infrastructure](https://drive.google.com/file/d/10ZoVH3MW8VZxMda8F2VBzW2uhzNIIcnF/view?usp=sharing), you can download and decompress it under './data/dair-v2x'.
 
 Other requirements:
 ```pip install --upgrade git+https://github.com/klintan/pypcd.git```
@@ -44,7 +44,7 @@ cd FFNET-VIC3D && pip install -e . --user
 
 Download `trained weights`. 
 (
-[google drive](https://drive.google.com/drive/folders/1GAku0G0iR9DsBxCbfENWMJ27c5lYUeQA?usp=sharing)
+[google drive](https://drive.google.com/file/d/14dADaW2xcf6Ug1X-ve75VZGMrnDUvAbO/view?usp=sharing)
 )
 
 Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 200ms latency:
