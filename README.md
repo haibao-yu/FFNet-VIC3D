@@ -4,18 +4,18 @@
 
 <!-- ![image](resources/image.png) -->
 <div align="center">
-  <img src="./resources/ffnet_image.png" height="400">
+  <img src="./resources/FFNET-OVERVIEW.png" height="400">
 </div>
 <p align="center">
-  Figure 1: Performance of FFNET.
+  Figure 1: FFNET OVERVIEW.
 </p>
 
-### [Project page](https://anonymous.4open.science/r/FFNet-VIC3D-ICLR3614) | [Paper](https://drive.google.com/file/d/1bSgu2f6X4Y9ZSxEHbMGHubgG909TJe3m/view?usp=sharing) |
+### [Project page](https://anonymous.4open.science/r/FFNet-VIC3D-ICLR3614) | [Paper](https://openreview.net/forum?id=ZLfD0cowleE) |
 
 FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D DETECTION VIA FEATURE FLOW PREDICTION.<br>
 Under review as a conference paper at ICLR 2023.
 
-This repository contains the official Pytorch implementation of training & evaluation code and the pretrained models for [FFNET](./paper/FFNET_ICLR2023.pdf).
+This repository contains the official Pytorch implementation of training & evaluation code and the pretrained models for [FFNET](https://openreview.net/forum?id=ZLfD0cowleE).
 
 FFNET is a simple, efficient and powerful VIC3D Detection method, as shown in Figure 1.
 
@@ -25,7 +25,11 @@ We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/
 ## Installation
 
 For install, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
+<<<<<<< HEAD
+For data, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest). We provide the example data [example-cooperative-vehicle-infrastructure](https://drive.google.com/file/d/1eLFy7_f1RapLPvAJLEDB8eUA8z1Meevz/view?usp=sharing), you can download and decompress it under './data/dair-v2x'.
+=======
 For data, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest). We provide the example data [example-cooperative-vehicle-infrastructure](https://drive.google.com/file/d/10ZoVH3MW8VZxMda8F2VBzW2uhzNIIcnF/view?usp=sharing), you can download and decompress it under './data/dair-v2x'.
+>>>>>>> f178125965e3a56b2d96b543205866e336bb1991
 
 Other requirements:
 ```pip install --upgrade git+https://github.com/klintan/pypcd.git```
@@ -44,8 +48,13 @@ cd FFNET-VIC3D && pip install -e . --user
 
 Download `trained weights`. 
 (
+<<<<<<< HEAD
+[FFNET Trainded Checkpoint](https://drive.google.com/file/d/1eX2wZ7vSxq8y9lAyjHyrmBQ30qNHcFC6/view?usp=sharing) | [FFNET without prediction](https://drive.google.com/file/d/14ujtkGVMGGdvHnmEAUDArny6HKbYM_ye/view?usp=sharing) 
+| [FFNET-V2 without prediction](https://drive.google.com/file/d/1_-C4MfUeC-6MXPDZlx6LTM48Tl8gdZpR/view?usp=sharing)
+=======
 [FFNET Trainded Checkpoint](https://drive.google.com/file/d/14dADaW2xcf6Ug1X-ve75VZGMrnDUvAbO/view?usp=sharing) | [Basemodel Trainded Checkpoint](https://drive.google.com/file/d/1fbiNFaejwAbCR2lih9UitzUtqrfec8gg/view?usp=sharing) 
 | [Basemodel(same TC) Trainded Checkpoint](https://drive.google.com/file/d/1WnEMKL5k2RupgWuiTi41IvupNbjttYue/view?usp=sharing)
+>>>>>>> f178125965e3a56b2d96b543205866e336bb1991
 )
 
 Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 200ms latency:
