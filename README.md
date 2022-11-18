@@ -25,11 +25,7 @@ We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/
 ## Installation
 
 For install, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
-<<<<<<< HEAD
 For data, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest). We provide the example data [example-cooperative-vehicle-infrastructure](https://drive.google.com/file/d/1eLFy7_f1RapLPvAJLEDB8eUA8z1Meevz/view?usp=sharing), you can download and decompress it under './data/dair-v2x'.
-=======
-For data, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest). We provide the example data [example-cooperative-vehicle-infrastructure](https://drive.google.com/file/d/10ZoVH3MW8VZxMda8F2VBzW2uhzNIIcnF/view?usp=sharing), you can download and decompress it under './data/dair-v2x'.
->>>>>>> f178125965e3a56b2d96b543205866e336bb1991
 
 Other requirements:
 ```pip install --upgrade git+https://github.com/klintan/pypcd.git```
@@ -48,13 +44,8 @@ cd FFNET-VIC3D && pip install -e . --user
 
 Download `trained weights`. 
 (
-<<<<<<< HEAD
 [FFNET Trainded Checkpoint](https://drive.google.com/file/d/1eX2wZ7vSxq8y9lAyjHyrmBQ30qNHcFC6/view?usp=sharing) | [FFNET without prediction](https://drive.google.com/file/d/14ujtkGVMGGdvHnmEAUDArny6HKbYM_ye/view?usp=sharing) 
 | [FFNET-V2 without prediction](https://drive.google.com/file/d/1_-C4MfUeC-6MXPDZlx6LTM48Tl8gdZpR/view?usp=sharing)
-=======
-[FFNET Trainded Checkpoint](https://drive.google.com/file/d/14dADaW2xcf6Ug1X-ve75VZGMrnDUvAbO/view?usp=sharing) | [Basemodel Trainded Checkpoint](https://drive.google.com/file/d/1fbiNFaejwAbCR2lih9UitzUtqrfec8gg/view?usp=sharing) 
-| [Basemodel(same TC) Trainded Checkpoint](https://drive.google.com/file/d/1WnEMKL5k2RupgWuiTi41IvupNbjttYue/view?usp=sharing)
->>>>>>> f178125965e3a56b2d96b543205866e336bb1991
 )
 
 Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 200ms latency:
