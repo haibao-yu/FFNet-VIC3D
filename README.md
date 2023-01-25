@@ -10,7 +10,7 @@
   Figure 1: FFNET OVERVIEW.
 </p>
 
-### [Project page](https://anonymous.4open.science/r/FFNet-VIC3D-ICLR3614) | [Paper](https://openreview.net/forum?id=ZLfD0cowleE) |
+### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://openreview.net/forum?id=ZLfD0cowleE) |
 
 FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D DETECTION VIA FEATURE FLOW PREDICTION.<br>
 Under review as a conference paper at ICLR 2023.
