@@ -229,37 +229,8 @@ class FeatureFlowNet(SingleStage3DDetector):
         return points
             
     def feature_fusion(self, veh_x, inf_x, img_metas, mode='fusion'):
-
-        """ Method II: Based on affine transformation."""
-        wrap_feats_ii = []
         
-        '''
-        for ii in range(len(veh_x[0])):
-            inf_feature = inf_x[0][ii:ii+1]
-            veh_feature = veh_x[0][ii:ii+1]
-
-            calib_inf2veh_rotation = img_metas[ii]['inf2veh']['rotation']
-            calib_inf2veh_translation = img_metas[ii]['inf2veh']['translation']
-            inf_pointcloud_range = self.inf_voxel_layer.point_cloud_range
-            # theta_rot = [[cos(-theta), sin(-theta), 0.0], [cos(-theta), sin(-theta), 0.0]], theta is in the lidar coordinate.
-            # according to the relationship between lidar coordinate system and input coordinate system.
-            theta_rot = torch.tensor([[calib_inf2veh_rotation[0][0], -calib_inf2veh_rotation[0][1], 0.0],
-                                      [-calib_inf2veh_rotation[1][0], calib_inf2veh_rotation[1][1], 0.0]]).type(dtype=torch.float).cuda(next(self.parameters()).device)
-            theta_rot = torch.unsqueeze(theta_rot, 0)
-            grid_rot = F.affine_grid(theta_rot, size=torch.Size(veh_feature.shape), align_corners=False)
-            # range: [-1, 1].
-            # Moving right and down is negative.
-            x_trans = -2 * calib_inf2veh_translation[0][0] / (inf_pointcloud_range[3] - inf_pointcloud_range[0])
-            y_trans = -2 * calib_inf2veh_translation[1][0] / (inf_pointcloud_range[4] - inf_pointcloud_range[1])
-            theta_trans = torch.tensor([[1.0, 0.0, x_trans], [0.0, 1.0, y_trans]]).type(dtype=torch.float).cuda(next(self.parameters()).device)
-            theta_trans = torch.unsqueeze(theta_trans, 0)
-            grid_trans = F.affine_grid(theta_trans, size=torch.Size(veh_feature.shape), align_corners=False)
-
-            warp_feat_rot = F.grid_sample(inf_feature, grid_rot, mode='bilinear', align_corners=False)
-            warp_feat_trans = F.grid_sample(warp_feat_rot, grid_trans, mode='bilinear', align_corners=False)
-
-            wrap_feats_ii.append(warp_feat_trans)
-        '''
+        wrap_feats_ii = []
         for ii in range(len(veh_x[0])):
             inf_feature = inf_x[0][ii:ii+1]
             veh_feature = veh_x[0][ii:ii+1]
@@ -271,11 +242,13 @@ class FeatureFlowNet(SingleStage3DDetector):
             theta_rot = torch.tensor([[calib_inf2veh_rotation[0][0], -calib_inf2veh_rotation[0][1], 0.0],
                                       [-calib_inf2veh_rotation[1][0], calib_inf2veh_rotation[1][1], 0.0],
                                       [0,0,1]]).type(dtype=torch.float).cuda(next(self.parameters()).device)
-            theta_rot= torch.FloatTensor(self.generate_matrix(theta_rot,-1,0)).type(dtype=torch.float).cuda(next(self.parameters()).device)
-            # Moving right and down is negative.
+            theta_rot= torch.FloatTensor(self.generate_matrix(theta_rot,-1,0)). \
+                type(dtype=torch.float).cuda(next(self.parameters()).device)
+
             x_trans = -2 * calib_inf2veh_translation[0][0] / (inf_pointcloud_range[3] - inf_pointcloud_range[0])
             y_trans = -2 * calib_inf2veh_translation[1][0] / (inf_pointcloud_range[4] - inf_pointcloud_range[1])
-            theta_trans = torch.tensor([[1.0, 0.0, x_trans], [0.0, 1.0, y_trans],[0.0, 0.0 , 1]]).type(dtype=torch.float).cuda(next(self.parameters()).device)
+            theta_trans = torch.tensor([[1.0, 0.0, x_trans], [0.0, 1.0, y_trans], \
+                [0.0, 0.0 , 1]]).type(dtype=torch.float).cuda(next(self.parameters()).device)
             theta_r_t=torch.mm(theta_rot,theta_trans, out=None)
 
             grid_r_t = F.affine_grid(theta_r_t[0:2].unsqueeze(0), size=torch.Size(veh_feature.shape), align_corners=False)
@@ -290,19 +263,6 @@ class FeatureFlowNet(SingleStage3DDetector):
             return wrap_feats
         elif mode == 'veh_only':
             return veh_x
-
-        ''' visualization
-        import cv2
-        filename = "vis_veh_feat.png"
-        save_tensor = veh_x[0][0, 5].cpu().numpy()
-        save_tensor = 255 - save_tensor / save_tensor.max() * 255
-        cv2.imwrite(filename, save_tensor)
-
-        filename = "vis_inf_feat.png"
-        save_tensor = wrap_feats[0][0, 15].cpu().numpy()
-        save_tensor = 255 - save_tensor / save_tensor.max() * 255
-        cv2.imwrite(filename, save_tensor)
-        '''
 
         veh_cat_feats = [torch.cat([veh_x[0], wrap_feats[0]], dim=1)]
         veh_cat_feats[0] = self.fusion_weighted(veh_cat_feats[0])
@@ -566,7 +526,6 @@ class FeatureFlowNet(SingleStage3DDetector):
             feat_inf_apprs = []
             for ii in range(len(flow_pred)):
                 for bs in range(len(points)):
-                    # feat_inf_t_1[ii][bs] = feat_inf_t_1[ii][bs] + flow_pred[ii][bs] / points_t_0_1[bs] * points_t_1_2[bs]                    
                     tem_feat_inf_t_1_before_max = feat_inf_t_1[ii][bs].mean()
                     feat_inf_temp[ii][bs] = feat_inf_t_1[ii][bs] + flow_pred[ii][bs] / points_t_0_1[bs] * points_t_1_2[bs]
                     tem_feat_inf_t_1_after_max = feat_inf_temp[ii][bs].mean().detach()

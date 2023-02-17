@@ -5,6 +5,7 @@ l = int((point_cloud_range[3]-point_cloud_range[0])/voxel_size[0])
 h = int((point_cloud_range[4]-point_cloud_range[1])/voxel_size[1])
 output_shape = [h, l]
 dataset_type = 'V2XDataset'
+# data_root = './data/dair-v2x/DAIR-V2X-Examples/cooperative-vehicle-infrastructure/'
 data_root = './data/dair-v2x/example-cooperative-vehicle-infrastructure/'
 work_dir = './ffnet_work_dir/work_dir_baseline-V1'
 class_names = ['Pedestrian', 'Cyclist', 'Car']
