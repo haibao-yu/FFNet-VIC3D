@@ -43,7 +43,7 @@ cd FFNET-VIC3D && pip install -e . --user
 
 ## Data Preparation
 We train and evaluate the models on DAIR-V2X dataset. For downloading DAIR-V2X dataset, please refer to the guidelines in [DAIR-V2X](https://thudair.baai.ac.cn/cooptest).
-After downloading the dataset, we should preprcocess the dataset as the guidelines in [data_preprocess][data/dair-v2x/README.md].
+After downloading the dataset, we should preprcocess the dataset as the guidelines in [data_preprocess](data/dair-v2x/README.md).
 We provide the preprocessed example data [example-cooperative-vehicle-infrastructure](https://drive.google.com/file/d/1y8bGwI63TEBkDEh2JU_gdV7uidthSnoe/view?usp=sharing), you can download and decompress it under './data/dair-v2x'.
 
 
