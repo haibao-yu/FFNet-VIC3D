@@ -254,3 +254,12 @@ if __name__ == "__main__":
 
     c_jsons_write_path = os.path.join(dair_v2x_c_root, 'cooperative/data_info_new.json')
     write_json(c_jsons_write_path, c_jsons)
+
+    # Complementary process:  missing infrastructure point clouds
+    c_jsons_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/data_info.json')
+    c_jsons = read_json(c_jsons_path)
+    for c_json in c_jsons:
+        inf_idx = c_json['pointcloud_path'].split('/')[-1].replace('.pcd', '')
+        pcd_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.pcd')
+        bin_save_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
+        pcd2bin(pcd_path, bin_save_path)
