@@ -113,7 +113,7 @@ class V2XDataset(Custom3DDataset):
             Dict
         """
         for info in self.data_infos:
-            anno_path = os.path.join(self.data_root, info['cooperative_label_path'])
+            anno_path = os.path.join(self.data_root, info['cooperative_label_w2v_path'])
             annos = self.__my_read_json(anno_path)
             kitti_annos = {}
             kitti_annos['name'] = []
