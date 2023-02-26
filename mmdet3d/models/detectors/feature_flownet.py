@@ -1,4 +1,4 @@
-# Copyright (c) OpenMMLab. All rights reserved.
+# Copyright (c) DAIR-V2X (AIR). All rights reserved.
 import torch
 from torch import nn as nn
 from mmcv.runner import force_fp32

@@ -1,4 +1,4 @@
-# Copyright (c) DAIR-V2X(AIR). All rights reserved.
+# Copyright (c) DAIR-V2X (AIR). All rights reserved.
 import copy
 import mmcv
 import numpy as np
