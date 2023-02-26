@@ -20,7 +20,8 @@ This repository contains the official Pytorch implementation of training & evalu
 
 FFNET is a simple, efficient and powerful VIC3D Object Detection method, as shown in Figure 1.
 
-We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1) as the codebase.
+We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1) as the codebase. <br>
+We evaluation all the models with [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
 
 
 ## Installation
