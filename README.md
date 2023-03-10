@@ -14,7 +14,7 @@
 
 FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION VIA FEATURE FLOW PREDICTION.<br>
 [Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, Jirui Yuan, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
-Under review as a conference paper at ICML 2023.
+Under review as a conference paper.
 
 This repository contains the official Pytorch implementation of training & evaluation code and the pretrained models for [FFNET](https://openreview.net/forum?id=ZLfD0cowleE).
 
@@ -56,11 +56,15 @@ Download `trained weights`.
 | [FFNET-V2 without prediction](https://drive.google.com/file/d/1_-C4MfUeC-6MXPDZlx6LTM48Tl8gdZpR/view?usp=sharing)
 )
 
-Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 200ms latency:
+Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/configs/vic3d/middle-fusion-pointcloud/ffnet/README.md) for evaluating FFNet with OpenDAIRV2X. 
+
+Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 100ms latency:
 
 ```
-# Single-gpu testing
-python tools/test.py ffnet_work_dir/config_ffnet.py /path/to/ffnet_checkpoint_file
+# modify the DATA to point to DAIR-V2X-C-Example in script ${OpenDAIRV2X_root}/v2x/scripts/lidar_feature_flow.sh
+# bash scripts/lidar_feature_flow.sh [YOUR_CUDA_DEVICE] [YOUR_FFNET_WORKDIR] [DELAY_K] 
+cd ${OpenDAIRV2X_root}/v2x
+bash scripts/lidar_feature_flow.sh 0 /home/yuhaibao/FFNet-VIC3D 1
 ```
 
 ## Training
@@ -78,4 +82,15 @@ Thirdly, train ```FFNET``` on ```DAIR-V2X``` with latenncy
 ```
 # Single-gpu training
 python tools/train.py ffnet_work_dir/config_ffnet.py  
+```
+
+## Citation
+
+```latex
+@inproceedings{yu2023ffnet,
+  title={Vehicle-Infrastructure Cooperative 3D Object Detection via Feature Flow Prediction},
+  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Yuan, Jirui and Luo, Ping and Nie, Zaiqing },
+  booktitle={Under Review},
+  year={2023}
+}
 ```

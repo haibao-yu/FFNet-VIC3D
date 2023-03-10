@@ -1,14 +1,14 @@
-voxel_size = [0.16, 0.16, 4]
-point_cloud_range = [0, -46.08, -3, 92.16, 46.08, 1]
-z_center_car = -2.66
-l = int((point_cloud_range[3]-point_cloud_range[0])/voxel_size[0])
-h = int((point_cloud_range[4]-point_cloud_range[1])/voxel_size[1])
-output_shape = [h, l]
 dataset_type = 'V2XDataset'
 # data_root = './data/dair-v2x/DAIR-V2X-Examples/cooperative-vehicle-infrastructure/'
 data_root = './data/dair-v2x/example-cooperative-vehicle-infrastructure/'
 work_dir = './ffnet_work_dir/work_dir_baseline-V1'
+
 class_names = ['Pedestrian', 'Cyclist', 'Car']
+point_cloud_range = [0, -46.08, -3, 92.16, 46.08, 1]
+voxel_size = [0.16, 0.16, 4]
+l = int((point_cloud_range[3]-point_cloud_range[0])/voxel_size[0])
+h = int((point_cloud_range[4]-point_cloud_range[1])/voxel_size[1])
+output_shape = [h, l]
 z_center_pedestrian = -0.6
 z_center_cyclist = -0.6
 z_center_car = -2.66

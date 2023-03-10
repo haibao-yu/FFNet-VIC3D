@@ -1,5 +1,5 @@
 dataset_type = 'V2XDataset'
-data_root = './data/dair-v2x/example-cooperative-vehicle-infrastructure/'
+data_root = './data/dair-v2x/DAIR-V2X/cooperative-vehicle-infrastructure/'
 ############## flownet_test_mode: {'FlowPred', 'OriginFeat', 'Async'} ##############
 # FlowPred: Use feature flow to compensate for the temporay asynchrony 
 # OriginFeat: Do not introduce the simulated temporal asychrony
@@ -9,6 +9,7 @@ data_info_val_path='./data/dair-v2x/flow_data_jsons/example_flow_data_info_val_2
 flownet_test_mode='FlowPred' # {'FlowPred', 'OriginFeat', 'Async'}
 #################################################################################### 
 pretrained_basemodel='./ffnet_work_dir/pretrained-checkpoints/epoch_40.pth'
+work_dir = './ffnet_work_dir/work_dir_ffnet'
 
 class_names = ['Pedestrian', 'Cyclist', 'Car']
 point_cloud_range = [0, -46.08, -3, 92.16, 46.08, 1]
@@ -315,7 +316,6 @@ log_config = dict(
            dict(type='TensorboardLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs_with_relu_train_2_0525'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
