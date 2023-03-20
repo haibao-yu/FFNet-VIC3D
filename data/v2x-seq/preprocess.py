@@ -202,18 +202,18 @@ if __name__ == "__main__":
         system_error_offset = c_json['system_error_offset']
         if system_error_offset is "":
             system_error_offset = None
-        # calib_lidar_i2v_r, calib_lidar_i2v_t = trans_lidar_i2v(inf_lidar2world_path, veh_lidar2novatel_path,
-        #                                   veh_novatel2world_path, system_error_offset)
-        # print('calib_lidar_i2v: ', calib_lidar_i2v_r, calib_lidar_i2v_t)
-        # calib_lidar_i2v = {}
-        # calib_lidar_i2v['rotation'] = calib_lidar_i2v_r.tolist()
-        # calib_lidar_i2v['translation'] = calib_lidar_i2v_t.tolist()
+        calib_lidar_i2v_r, calib_lidar_i2v_t = trans_lidar_i2v(inf_lidar2world_path, veh_lidar2novatel_path,
+                                          veh_novatel2world_path, system_error_offset)
+        print('calib_lidar_i2v: ', calib_lidar_i2v_r, calib_lidar_i2v_t)
+        calib_lidar_i2v = {}
+        calib_lidar_i2v['rotation'] = calib_lidar_i2v_r.tolist()
+        calib_lidar_i2v['translation'] = calib_lidar_i2v_t.tolist()
         calib_lidar_i2v_save_dir = os.path.join(dair_v2x_c_root,
                                             'cooperative/calib/lidar_i2v')
         if not os.path.exists(calib_lidar_i2v_save_dir):
             os.makedirs(calib_lidar_i2v_save_dir)
         calib_lidar_i2v_save_path = os.path.join(calib_lidar_i2v_save_dir, veh_idx + '.json')
-        # write_json(calib_lidar_i2v_save_path, calib_lidar_i2v)
+        write_json(calib_lidar_i2v_save_path, calib_lidar_i2v)
 
         # inf_pcd_path = os.path.join(dair_v2x_c_root,
         #                             c_json['infrastructure_pointcloud_path'])
@@ -235,14 +235,14 @@ if __name__ == "__main__":
 
         pcd_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.pcd')
         bin_save_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
-        # pcd2bin(pcd_path, bin_save_path)
+        pcd2bin(pcd_path, bin_save_path)
         # c_json['infrastructure_pointcloud_bin_path'] = c_json['infrastructure_pointcloud_path'].replace('.pcd', '.bin')
         c_json['infrastructure_pointcloud_bin_path'] = os.path.join('infrastructure-side/velodyne',  inf_idx + '.bin')
         c_json['infrastructure_idx'] = inf_idx
 
         pcd_path = os.path.join(dair_v2x_c_root, 'vehicle-side/velodyne/' + veh_idx + '.pcd')
         bin_save_path = os.path.join(dair_v2x_c_root, 'vehicle-side/velodyne/' + veh_idx + '.bin')
-        # pcd2bin(pcd_path, bin_save_path)
+        pcd2bin(pcd_path, bin_save_path)
         # c_json['vehicle_pointcloud_bin_path'] = c_json['vehicle_pointcloud_path'].replace('.pcd', '.bin')
         c_json['vehicle_pointcloud_bin_path'] = os.path.join('vehicle-side/velodyne',  veh_idx + '.bin')
         c_json['vehicle_idx'] = veh_idx
@@ -266,4 +266,4 @@ if __name__ == "__main__":
         inf_idx = c_json['pointcloud_path'].split('/')[-1].replace('.pcd', '')
         pcd_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.pcd')
         bin_save_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
-        # pcd2bin(pcd_path, bin_save_path)
+        pcd2bin(pcd_path, bin_save_path)
