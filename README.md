@@ -10,7 +10,7 @@
   Figure 1: FFNET OVERVIEW.
 </p>
 
-### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://openreview.net/forum?id=ZLfD0cowleE) |
+### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://arxiv.org/abs/2303.10552) |
 
 FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION VIA FEATURE FLOW PREDICTION.<br>
 [Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, Jirui Yuan, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
@@ -90,7 +90,7 @@ python tools/train.py ffnet_work_dir/config_ffnet.py
 @inproceedings{yu2023ffnet,
   title={Vehicle-Infrastructure Cooperative 3D Object Detection via Feature Flow Prediction},
   author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Yuan, Jirui and Luo, Ping and Nie, Zaiqing },
-  booktitle={Under Review},
+  booktitle={https://arxiv.org/abs/2303.10552},
   year={2023}
 }
 ```
