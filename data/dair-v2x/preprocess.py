@@ -4,6 +4,7 @@ import numpy as np
 import math
 from pypcd import pypcd
 import argparse
+from tqdm import tqdm
 
 def read_json(path_json):
     with open(path_json, 'r') as load_f:
@@ -188,7 +189,7 @@ if __name__ == "__main__":
     c_jsons_path = os.path.join(dair_v2x_c_root, 'cooperative/data_info.json')
     c_jsons = read_json(c_jsons_path)
 
-    for c_json in c_jsons:
+    for c_json in tqdm(c_jsons):
         inf_idx = c_json['infrastructure_image_path'].split('/')[-1].replace('.jpg', '')
         inf_lidar2world_path = os.path.join(dair_v2x_c_root,
                                             'infrastructure-side/calib/virtuallidar_to_world/' + inf_idx + '.json')
@@ -202,7 +203,7 @@ if __name__ == "__main__":
             system_error_offset = None
         calib_lidar_i2v_r, calib_lidar_i2v_t = trans_lidar_i2v(inf_lidar2world_path, veh_lidar2novatel_path,
                                           veh_novatel2world_path, system_error_offset)
-        print('calib_lidar_i2v: ', calib_lidar_i2v_r, calib_lidar_i2v_t)
+        # print('calib_lidar_i2v: ', calib_lidar_i2v_r, calib_lidar_i2v_t)
         calib_lidar_i2v = {}
         calib_lidar_i2v['rotation'] = calib_lidar_i2v_r.tolist()
         calib_lidar_i2v['translation'] = calib_lidar_i2v_t.tolist()

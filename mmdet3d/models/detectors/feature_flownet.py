@@ -534,7 +534,7 @@ class FeatureFlowNet(SingleStage3DDetector):
             
             similarity = torch.cosine_similarity(torch.flatten(feat_inf_t_2[0], start_dim=1, end_dim=3),
                                                  torch.flatten(feat_inf_apprs[0], start_dim=1, end_dim=3), dim=1)
-            print("The similarity is: ", similarity, points_t_1_2)
+            # print("The similarity is: ", similarity, points_t_1_2)
             
             feat_inf = feat_inf_apprs
         feat_fused = self.feature_fusion(feat_veh, feat_inf, img_metas)
