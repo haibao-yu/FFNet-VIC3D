@@ -26,8 +26,6 @@ def split_datas(data_infos, split_datas, split='val'):
 
     inf_split_datas = split_datas['infrastructure_split'][split]
     for data_info in data_infos:
-        data_info['cooperative_label_w2v_path'] = data_info['cooperative_label_path']
-        data_info['cooperative_label_path'] = data_info['cooperative_label_path'].replace('label/lidar', 'label_world')
         infrastructure_frame = data_info['infrastructure_image_path'].split('/')[-1].replace('.jpg', '')
         if infrastructure_frame in inf_split_datas:
             data_infos_split.append(data_info)
