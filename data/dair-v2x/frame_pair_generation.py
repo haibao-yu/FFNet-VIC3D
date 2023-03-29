@@ -137,10 +137,10 @@ if __name__ == "__main__":
     data_infos = read_json(data_infos_path)
     data_infos_train = split_datas(data_infos, split_jsons, split='train')
 
-    data_infos_train_path = './flow_data_jsons/flow_data_info_train.json'
+    data_infos_train_path = './data/dair-v2x/flow_data_jsons/flow_data_info_train.json'
     write_json(data_infos_train_path, data_infos_train)
     data_infos_flow_train = data_info_flow_train(data_infos_train, inf_idx_batch_mappings)
-    data_infos_flow_path = './flow_data_jsons/flow_data_info_train_2.json'
+    data_infos_flow_path = './data/dair-v2x/flow_data_jsons/flow_data_info_train_2.json'
     write_json(data_infos_flow_path, data_infos_flow_train)
     
     # Generate val part
@@ -151,5 +151,5 @@ if __name__ == "__main__":
     for async_k in range(0, 6):
         data_infos_flow_val = data_info_flow_val(data_infos_val, inf_idx_batch_mappings, async_k=async_k)
         print("The length of data_infos_flow_val is: ", async_k, len(data_infos_flow_val))
-        data_infos_flow_path = './flow_data_jsons/flow_data_info_val_' + str(async_k) + '.json'
+        data_infos_flow_path = './data/dair-v2x/flow_data_jsons/flow_data_info_val_' + str(async_k) + '.json'
         write_json(data_infos_flow_path, data_infos_flow_val)

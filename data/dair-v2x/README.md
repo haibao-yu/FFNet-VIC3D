@@ -26,3 +26,7 @@ python ./data/dair-v2x/preprocess.py --source-root ./data/dair-v2x/DAIR-V2X-Exam
 ##  Generate the Frame Pairs
 We have provided the frame pair files in [flow_data_jsons](./flow_data_jsons). 
 You can generate your frame pairs with the provided [example script](./frame_pair_generation.py).
+```
+# Preprocess the dair-v2x-c dataset
+python ./data/dair-v2x/frame_pair_generation.py --source-root ./data/dair-v2x/DAIR-V2X-Examples/cooperative-vehicle-infrastructure
+```
