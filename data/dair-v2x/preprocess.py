@@ -249,7 +249,8 @@ if __name__ == "__main__":
         c_json['calib_lidar_i2v_path'] = os.path.join('cooperative/calib/lidar_i2v', veh_idx + '.json')
 
         label_world2vlidar(dair_v2x_c_root, veh_idx)
-        c_json['cooperative_label_path'] = os.path.join('cooperative/label/lidar', veh_idx + '.json')
+        c_json['cooperative_label_w2v_path'] = os.path.join('cooperative/label/lidar', veh_idx + '.json')
+        c_json['cooperative_label_path'] = os.path.join('cooperative/label_world', veh_idx + '.json')
 
         c_json['image'] = {"image_shape": [1080, 1920]}
 

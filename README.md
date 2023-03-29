@@ -72,16 +72,20 @@ bash scripts/lidar_feature_flow.sh 0 /home/yuhaibao/FFNet-VIC3D 1
 Firstly, train the basemodel on ```DAIR-V2X``` without latency
 ```
 # Single-gpu training
-CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_basemodel.py 
+cd ${FFNET-VIC_repo}
+export PYTHONPATH=$PYTHONPATH:./
+CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_basemodel.py
 ```
 
 Secondly, put the trained basemodel in a folder ```ffnet_work_dir/pretrained-checkpoints```.
 
-Thirdly, train ```FFNET``` on ```DAIR-V2X``` with latenncy
+Thirdly, train ```FFNET``` on ```DAIR-V2X``` with latency
 
 ```
 # Single-gpu training
-python tools/train.py ffnet_work_dir/config_ffnet.py  
+cd ${FFNET-VIC_repo}
+export PYTHONPATH=$PYTHONPATH:./
+CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_ffnet.py
 ```
 
 ## Citation

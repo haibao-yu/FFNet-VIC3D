@@ -4,8 +4,8 @@ data_root = './data/dair-v2x/DAIR-V2X/cooperative-vehicle-infrastructure/'
 # FlowPred: Use feature flow to compensate for the temporay asynchrony 
 # OriginFeat: Do not introduce the simulated temporal asychrony
 # Async: Introduce the temporal asynchrony and do not use feature flow to compensate for the temporay asynchrony
-data_info_train_path='./data/dair-v2x/flow_data_jsons/example_flow_data_info_train_2.json'
-data_info_val_path='./data/dair-v2x/flow_data_jsons/example_flow_data_info_val_2.json'
+data_info_train_path='./data/dair-v2x/flow_data_jsons/flow_data_info_train_2.json'
+data_info_val_path='./data/dair-v2x/flow_data_jsons/flow_data_info_val_2.json'
 flownet_test_mode='FlowPred' # {'FlowPred', 'OriginFeat', 'Async'}
 #################################################################################### 
 pretrained_basemodel='./ffnet_work_dir/pretrained-checkpoints/epoch_40.pth'
