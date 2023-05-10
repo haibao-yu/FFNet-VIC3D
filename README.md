@@ -93,7 +93,7 @@ CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_ffnet.py
 ```latex
 @inproceedings{yu2023ffnet,
   title={Vehicle-Infrastructure Cooperative 3D Object Detection via Feature Flow Prediction},
-  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Yuan, Jirui and Luo, Ping and Nie, Zaiqing },
+  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Yuan, Jirui and Luo, Ping and Nie, Zaiqing},
   booktitle={https://arxiv.org/abs/2303.10552},
   year={2023}
 }
