@@ -1,6 +1,6 @@
 ![Python 3.7](https://img.shields.io/badge/python-3.7-green.svg)
 
-# FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION VIA FEATURE FLOW PREDICTION
+# FFNET: Flow-Based Feature Fusion for VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION
 
 <!-- ![image](resources/image.png) -->
 <div align="center">
