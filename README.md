@@ -23,6 +23,9 @@ FFNET is a simple, efficient and powerful VIC3D Object Detection method, as show
 We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1) as the codebase. <br>
 We evaluation all the models with [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
 
+## News
+
+* [2023.09] 🔥 Our [FFNET](https://github.com/haibao-yu/FFNet-VIC3D) has been accpeted by Neurips2023.
 
 ## Installation
 For more information about installing mmdet3d, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
