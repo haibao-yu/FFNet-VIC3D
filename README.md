@@ -12,9 +12,9 @@
 
 ### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://arxiv.org/abs/2303.10552) |
 
-FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION VIA FEATURE FLOW PREDICTION.<br>
-[Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, Jirui Yuan, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
-Under review as a conference paper.
+FFNET: Flow-Based Feature Fusion for VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION.<br>
+[Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
+NeurIPS 2023.
 
 This repository contains the official Pytorch implementation of training & evaluation code and the pretrained models for [FFNET](https://openreview.net/forum?id=ZLfD0cowleE).
 
@@ -23,9 +23,6 @@ FFNET is a simple, efficient and powerful VIC3D Object Detection method, as show
 We use [MMDetection3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1) as the codebase. <br>
 We evaluation all the models with [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
 
-## News
-
-* [2023.09] 🔥 Our [FFNET](https://github.com/haibao-yu/FFNet-VIC3D) has been accpeted by Neurips2023.
 
 ## Installation
 For more information about installing mmdet3d, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
