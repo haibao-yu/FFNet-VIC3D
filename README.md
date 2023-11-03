@@ -89,6 +89,14 @@ CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_ffnet.py
 ```
 
 ## Citation
+```latex
+@inproceedings{yu2023ffnet,
+  title={Flow-Based Feature Fusion for Vehicle-Infrastructure Cooperative 3D Object Detection},
+  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Luo, Ping and Nie, Zaiqing},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023}
+}
+```
 
 ```latex
 @inproceedings{yu2023ffnet,
