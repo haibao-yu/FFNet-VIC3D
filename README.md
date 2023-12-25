@@ -10,7 +10,7 @@
   Figure 1: FFNET OVERVIEW.
 </p>
 
-### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://arxiv.org/abs/2303.10552) |
+### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://arxiv.org/abs/2311.01682) |
 
 FFNET: Flow-Based Feature Fusion for VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION.<br>
 [Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
