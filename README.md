@@ -26,7 +26,7 @@ We evaluation all the models with [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-
 
 ## Installation
 For more information about installing mmdet3d, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
-For more inforation about installing OpenDAIRV2X, please refer to the guideline in [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
+For more information about installing OpenDAIRV2X, please refer to the guideline in [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
 
 
 Other requirements:
