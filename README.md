@@ -1,6 +1,6 @@
 ![Python 3.7](https://img.shields.io/badge/python-3.7-green.svg)
 
-# FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION VIA FEATURE FLOW PREDICTION
+# FFNET: Flow-Based Feature Fusion for VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION
 
 <!-- ![image](resources/image.png) -->
 <div align="center">
@@ -10,11 +10,11 @@
   Figure 1: FFNET OVERVIEW.
 </p>
 
-### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://arxiv.org/abs/2303.10552) |
+### [Project page](https://github.com/haibao-yu/FFNet-VIC3D) | [Paper](https://arxiv.org/abs/2311.01682) |
 
-FFNET: VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION VIA FEATURE FLOW PREDICTION.<br>
-[Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, Jirui Yuan, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
-Under review as a conference paper.
+FFNET: Flow-Based Feature Fusion for VEHICLE-INFRASTRUCTURE COOPERATIVE 3D OBJECT DETECTION.<br>
+[Haibao Yu](https://scholar.google.com/citations?user=JW4F5HoAAAAJ), Yingjuan Tang, [Enze Xie](https://xieenze.github.io/), Jilei Mao, [Ping Luo](http://luoping.me/), and [Zaiqing Nie](https://air.tsinghua.edu.cn/en/info/1046/1192.htm) <br>
+NeurIPS 2023.
 
 This repository contains the official Pytorch implementation of training & evaluation code and the pretrained models for [FFNET](https://openreview.net/forum?id=ZLfD0cowleE).
 
@@ -26,7 +26,7 @@ We evaluation all the models with [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-
 
 ## Installation
 For more information about installing mmdet3d, please refer to the guidelines in [MMDetectionn3D v0.17.1](https://github.com/open-mmlab/mmdetection3d/tree/v0.17.1).
-For more inforation about installing OpenDAIRV2X, please refer to the guideline in [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
+For more information about installing OpenDAIRV2X, please refer to the guideline in [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X).
 
 
 Other requirements:
@@ -89,11 +89,19 @@ CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_ffnet.py
 ```
 
 ## Citation
+```latex
+@inproceedings{yu2023ffnet,
+  title={Flow-Based Feature Fusion for Vehicle-Infrastructure Cooperative 3D Object Detection},
+  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Luo, Ping and Nie, Zaiqing},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023}
+}
+```
 
 ```latex
 @inproceedings{yu2023ffnet,
   title={Vehicle-Infrastructure Cooperative 3D Object Detection via Feature Flow Prediction},
-  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Yuan, Jirui and Luo, Ping and Nie, Zaiqing },
+  author={Yu, Haibao and Tang, Yingjuan and Xie, Enze and Mao, Jilei and Yuan, Jirui and Luo, Ping and Nie, Zaiqing},
   booktitle={https://arxiv.org/abs/2303.10552},
   year={2023}
 }

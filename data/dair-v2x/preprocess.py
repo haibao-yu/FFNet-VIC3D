@@ -42,7 +42,7 @@ def mul_matrix(rotation_1, translation_1, rotation_2, translation_2):
     rotation_2 = np.matrix(rotation_2)
     translation_2 = np.matrix(translation_2)
 
-    rotation = rotation_1 * rotation_2
+    rotation = rotation_2 * rotation_1
     translation = rotation_2 * translation_1 + translation_2
     rotation = np.array(rotation)
     translation = np.array(translation)
