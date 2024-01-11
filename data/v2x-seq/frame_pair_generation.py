@@ -34,7 +34,7 @@ def split_datas(data_infos, split_datas, split='val'):
 def data_info_flow_train(data_infos, inf_idx_batch_mappings):
     infrastructure_idxs = []
     for data_info in data_infos:
-        infrastructure_idxs.append(data_info['infrastructure_idx'])
+        infrastructure_idxs.append(data_info['infrastructure_frame'])
 
     data_infos_flow = []
     for data_info in data_infos:
@@ -42,7 +42,7 @@ def data_info_flow_train(data_infos, inf_idx_batch_mappings):
         for ii in range(random_num):
             data_info_flow = copy.deepcopy(data_info)
 
-            infrastructure_idx = data_info['infrastructure_idx']
+            infrastructure_idx = data_info['infrastructure_frame']
             t_0_1 = random.randint(-3, 3)
             t_1 = str(int(infrastructure_idx) - t_0_1).zfill(6)
             if t_1 not in infrastructure_idxs or inf_idx_batch_mappings[infrastructure_idx] != inf_idx_batch_mappings[t_1]:
@@ -73,7 +73,7 @@ def data_info_flow_train(data_infos, inf_idx_batch_mappings):
 def data_info_flow_val(data_infos, inf_idx_batch_mappings, async_k=1):
     infrastructure_idxs = []
     for data_info in data_infos:
-        infrastructure_idxs.append(data_info['infrastructure_idx'])
+        infrastructure_idxs.append(data_info['infrastructure_frame'])
 
     data_infos_flow = []
     count = 0
@@ -84,7 +84,7 @@ def data_info_flow_val(data_infos, inf_idx_batch_mappings, async_k=1):
             
         data_info_flow = copy.deepcopy(data_info)
 
-        infrastructure_idx = data_info['infrastructure_idx']
+        infrastructure_idx = data_info['infrastructure_frame']
         t_0_1 = async_k
         t_1 = str(int(infrastructure_idx) - t_0_1).zfill(6)
         if t_1 not in infrastructure_idxs or inf_idx_batch_mappings[infrastructure_idx] != inf_idx_batch_mappings[t_1]:
@@ -116,32 +116,43 @@ def data_info_flow_val(data_infos, inf_idx_batch_mappings, async_k=1):
 parser = argparse.ArgumentParser("Preprocess the DAIR-V2X-C for FFNET.")
 parser.add_argument(
     "--source-root", type=str, default="./data/dair-v2x/DAIR-V2X-Examples/cooperative-vehicle-infrastructure", 
-                    help="Raw data root of DAIR-V2X-C."
+                    help="Raw data root of DAIR-V2X-SPD."
+)
+parser.add_argument(
+    "--auxiliary-root", type=str, default="./data/v2x-seq/auxiliary_V2X-Seq-SPD",
+                    help="Save root for auxiliary data."
+)
+parser.add_argument(
+    "--json-root", type=str, default="./data/v2x-seq/flow_data_jsons/",
+                    help="Save jsons root for auxiliary data."
 )
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    dair_v2x_c_root = args.source_root
+    source_root = args.source_root
+    auxiliary_root = args.auxiliary_root
+    json_root = args.json_root
     
-    inf_data_infos_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/data_info.json')
+    inf_data_infos_path = os.path.join(source_root, 'infrastructure-side/data_info.json')
     inf_data_infos = read_json(inf_data_infos_path)
     inf_idx_batch_mappings = idx_batch_mapping(inf_data_infos)
 
-    split_json_path = os.path.join(dair_v2x_c_root, 'cooperative-split-data.json')
+    split_json_path = os.path.join(auxiliary_root, 'cooperative-split-data.json')
     split_jsons = read_json(split_json_path)
 
-    # ## You should split the data_info_new.json generated from preprocessing into train/val. 
-    # data_infos_path = os.path.join(dair_v2x_c_root, 'cooperative/data_info_new_train.json')
-    # data_infos = read_json(data_infos_path)
-    # data_infos_flow_train = data_info_flow_train(data_infos, inf_idx_batch_mappings)
-    # data_infos_flow_path = './dataset_jsons/flow_data_info_train_2.json'
-    # write_json(data_infos_flow_path, data_infos_flow_train)
+    ## You should split the data_info_new.json generated from preprocessing into train/val.
+    data_infos_path = os.path.join(auxiliary_root, 'cooperative/data_info_new.json')
+    data_infos = read_json(data_infos_path)
+    data_infos_train = split_datas(data_infos, split_jsons, split='train')
+    data_infos_flow_train = data_info_flow_train(data_infos_train, inf_idx_batch_mappings)
+    data_infos_flow_path = os.path.join(json_root, 'flow_data_info_train.json')
+    write_json(data_infos_flow_path, data_infos_flow_train)
     
-    data_infos_path = os.path.join(dair_v2x_c_root, 'cooperative/data_info_new.json')
+    data_infos_path = os.path.join(auxiliary_root, 'cooperative/data_info_new.json')
     data_infos = read_json(data_infos_path)
     data_infos_val = split_datas(data_infos, split_jsons, split='val')
 
     for async_k in range(0, 6):
         data_infos_flow_val = data_info_flow_val(data_infos_val, inf_idx_batch_mappings, async_k=async_k)
-        data_infos_flow_path = './flow_data_jsons/flow_data_info_val_' + str(async_k) + '.json'
+        data_infos_flow_path = os.path.join(json_root, 'flow_data_info_val_' + str(async_k) + '.json')
         write_json(data_infos_flow_path, data_infos_flow_val)

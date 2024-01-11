@@ -74,7 +74,7 @@ Firstly, train the basemodel on ```DAIR-V2X``` without latency
 # Single-gpu training
 cd ${FFNET-VIC_repo}
 export PYTHONPATH=$PYTHONPATH:./
-CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_basemodel.py
+CUDA_VISIBLE_DEVICES=$1 python tools/train.py configs/config_basemodel.py
 ```
 
 Secondly, put the trained basemodel in a folder ```ffnet_work_dir/pretrained-checkpoints```.
@@ -85,7 +85,7 @@ Thirdly, train ```FFNET``` on ```DAIR-V2X``` with latency
 # Single-gpu training
 cd ${FFNET-VIC_repo}
 export PYTHONPATH=$PYTHONPATH:./
-CUDA_VISIBLE_DEVICES=$1 python tools/train.py ffnet_work_dir/config_ffnet.py
+CUDA_VISIBLE_DEVICES=$1 python tools/train.py configs/config_ffnet.py
 ```
 
 ## Citation

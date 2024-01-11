@@ -4,6 +4,7 @@ import numpy as np
 import math
 from pypcd import pypcd
 import argparse
+from tqdm import tqdm
 
 def read_json(path_json):
     with open(path_json, 'r') as load_f:
@@ -41,7 +42,7 @@ def mul_matrix(rotation_1, translation_1, rotation_2, translation_2):
     rotation_2 = np.matrix(rotation_2)
     translation_2 = np.matrix(translation_2)
 
-    rotation = rotation_1 * rotation_2
+    rotation = rotation_2 * rotation_1
     translation = rotation_2 * translation_1 + translation_2
     rotation = np.array(rotation)
     translation = np.array(translation)
@@ -179,16 +180,22 @@ def label_world2vlidar(sub_root, idx):
 parser = argparse.ArgumentParser("Preprocess the DAIR-V2X-C for FFNET.")
 parser.add_argument(
     "--source-root", type=str, default="./data/dair-v2x/DAIR-V2X-Examples/cooperative-vehicle-infrastructure", 
-                    help="Raw data root of DAIR-V2X-C."
+                    help="Raw data root of DAIR-V2X-SPD."
+)
+parser.add_argument(
+    "--auxiliary-root", type=str, default="./data/v2x-seq/auxiliary_V2X-Seq-SPD",
+                    help="Save root for auxiliary data."
 )
 
 if __name__ == "__main__":
     args = parser.parse_args()
     dair_v2x_c_root = args.source_root
+    auxiliary_save_root = args.auxiliary_root
+
     c_jsons_path = os.path.join(dair_v2x_c_root, 'cooperative/data_info.json')
     c_jsons = read_json(c_jsons_path)
 
-    for c_json in c_jsons:
+    for c_json in tqdm(c_jsons):
         # inf_idx = c_json['infrastructure_image_path'].split('/')[-1].replace('.jpg', '')
         inf_idx = c_json['infrastructure_frame']
         inf_lidar2world_path = os.path.join(dair_v2x_c_root,
@@ -204,11 +211,11 @@ if __name__ == "__main__":
             system_error_offset = None
         calib_lidar_i2v_r, calib_lidar_i2v_t = trans_lidar_i2v(inf_lidar2world_path, veh_lidar2novatel_path,
                                           veh_novatel2world_path, system_error_offset)
-        print('calib_lidar_i2v: ', calib_lidar_i2v_r, calib_lidar_i2v_t)
+        # print('calib_lidar_i2v: ', calib_lidar_i2v_r, calib_lidar_i2v_t)
         calib_lidar_i2v = {}
         calib_lidar_i2v['rotation'] = calib_lidar_i2v_r.tolist()
         calib_lidar_i2v['translation'] = calib_lidar_i2v_t.tolist()
-        calib_lidar_i2v_save_dir = os.path.join(dair_v2x_c_root,
+        calib_lidar_i2v_save_dir = os.path.join(auxiliary_save_root,
                                             'cooperative/calib/lidar_i2v')
         if not os.path.exists(calib_lidar_i2v_save_dir):
             os.makedirs(calib_lidar_i2v_save_dir)
@@ -228,35 +235,38 @@ if __name__ == "__main__":
         #     inf_pcd.pc_data['y'][ii] = i2v_point[1]
         #     inf_pcd.pc_data['z'][ii] = i2v_point[2]
         #     inf_pcd.pc_data['intensity'][ii] = inf_pcd.pc_data['intensity'][ii] / 255
-        #         i2v_pcd_save_path = os.path.join(dair_v2x_c_root, 'cooperative/velodyne_i2v/' + veh_idx + '.pcd')
+        # i2v_pcd_save_path = os.path.join(auxiliary_save_root, 'cooperative/velodyne_i2v/' + veh_idx + '.pcd')
         # pypcd.save_point_cloud(inf_pcd, i2v_pcd_save_path)
         # i2v_bin_save_path = os.path.join(dair_v2x_c_root, 'cooperative/velodyne_i2v/' + veh_idx + '.bin')
         # pcd2bin(i2v_pcd_save_path, i2v_bin_save_path)
 
         pcd_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.pcd')
-        bin_save_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
+        bin_save_path = os.path.join(auxiliary_save_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
         pcd2bin(pcd_path, bin_save_path)
         # c_json['infrastructure_pointcloud_bin_path'] = c_json['infrastructure_pointcloud_path'].replace('.pcd', '.bin')
         c_json['infrastructure_pointcloud_bin_path'] = os.path.join('infrastructure-side/velodyne',  inf_idx + '.bin')
         c_json['infrastructure_idx'] = inf_idx
+        c_json['infrastructure_image_path'] = os.path.join('infrastructure-side/image',  inf_idx + '.jpg')
 
         pcd_path = os.path.join(dair_v2x_c_root, 'vehicle-side/velodyne/' + veh_idx + '.pcd')
-        bin_save_path = os.path.join(dair_v2x_c_root, 'vehicle-side/velodyne/' + veh_idx + '.bin')
+        bin_save_path = os.path.join(auxiliary_save_root, 'vehicle-side/velodyne/' + veh_idx + '.bin')
         pcd2bin(pcd_path, bin_save_path)
         # c_json['vehicle_pointcloud_bin_path'] = c_json['vehicle_pointcloud_path'].replace('.pcd', '.bin')
         c_json['vehicle_pointcloud_bin_path'] = os.path.join('vehicle-side/velodyne',  veh_idx + '.bin')
         c_json['vehicle_idx'] = veh_idx
+        c_json['vehicle_image_path'] = os.path.join('vehicle-side/image',  inf_idx + '.jpg')
 
         c_json['calib_v_lidar2cam_path'] = os.path.join('vehicle-side/calib/lidar_to_camera', veh_idx + '.json')
         c_json['calib_v_cam_intrinsic_path'] = os.path.join('vehicle-side/calib/camera_intrinsic/', veh_idx + '.json')
         c_json['calib_lidar_i2v_path'] = os.path.join('cooperative/calib/lidar_i2v', veh_idx + '.json')
 
         # label_world2vlidar(dair_v2x_c_root, veh_idx)
-        c_json['cooperative_label_path'] = os.path.join('cooperative/label', veh_idx + '.json')
+        # c_json['cooperative_label_path'] = os.path.join('cooperative/label', veh_idx + '.json')
+        c_json['cooperative_label_w2v_path'] = os.path.join('cooperative/label', veh_idx + '.json')
 
         c_json['image'] = {"image_shape": [1080, 1920]}
 
-    c_jsons_write_path = os.path.join(dair_v2x_c_root, 'cooperative/data_info_new.json')
+    c_jsons_write_path = os.path.join(auxiliary_save_root, 'cooperative/data_info_new.json')
     write_json(c_jsons_write_path, c_jsons)
 
     # Complementary process:  missing infrastructure point clouds
@@ -265,5 +275,5 @@ if __name__ == "__main__":
     for c_json in c_jsons:
         inf_idx = c_json['pointcloud_path'].split('/')[-1].replace('.pcd', '')
         pcd_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.pcd')
-        bin_save_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
+        bin_save_path = os.path.join(auxiliary_save_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
         pcd2bin(pcd_path, bin_save_path)
