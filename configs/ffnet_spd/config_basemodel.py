@@ -1,8 +1,8 @@
 dataset_type = 'V2XDataset'
-data_root = './data/v2x-seq/auxiliary_V2X-Seq-SPD/'
+data_root = './data/v2x-seq/V2X-Seq-SPD/'
 data_info_train_path = './data/v2x-seq/flow_data_jsons/flow_data_info_train.json'
 data_info_val_path = './data/v2x-seq/flow_data_jsons/flow_data_info_val_0.json'
-work_dir = './ffnet_work_dir/work_dir_spd_baseline-V1'
+work_dir = './ffnet_work_dir/work_dir_spd_baseline'
 
 class_names = ['Pedestrian', 'Cyclist', 'Car']
 point_cloud_range = [0, -46.08, -3, 92.16, 46.08, 1]
@@ -295,7 +295,7 @@ data = dict(
         pcd_limit_range=point_cloud_range,
         box_type_3d='LiDAR'))
 evaluation = dict(
-    interval=20,
+    interval=40,
     pipeline=[
         dict(
             type='LoadPointsFromFile',
@@ -322,7 +322,7 @@ momentum_config = dict(
     target_ratio=(0.8947368421052632, 1),
     cyclic_times=1,
     step_ratio_up=0.4)
-runner = dict(type='EpochBasedRunner', max_epochs=20)
+runner = dict(type='EpochBasedRunner', max_epochs=40)
 checkpoint_config = dict(interval=2)
 log_config = dict(
     interval=50,

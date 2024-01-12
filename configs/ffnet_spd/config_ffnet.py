@@ -1,16 +1,15 @@
 dataset_type = 'V2XDataset'
-data_root = './data/v2x-seq/auxiliary_V2X-Seq-SPD/'
+data_root = './data/v2x-seq/V2X-Seq-SPD/'
 ############## flownet_test_mode: {'FlowPred', 'OriginFeat', 'Async'} ##############
 # FlowPred: Use feature flow to compensate for the temporay asynchrony 
 # OriginFeat: Do not introduce the simulated temporal asychrony
 # Async: Introduce the temporal asynchrony and do not use feature flow to compensate for the temporay asynchrony
-data_info_train_path = './data/v2x-seq/flow_data_jsons/flow_data_info_train.json'
+data_info_train_path = './data/v2x-seq/flow_data_jsons/flow_data_info_train_2.json'
 data_info_val_path = './data/v2x-seq/flow_data_jsons/flow_data_info_val_0.json'
 flownet_test_mode='FlowPred' # {'FlowPred', 'OriginFeat', 'Async'}
 #################################################################################### 
-# pretrained_basemodel='./ffnet_work_dir/pretrained-checkpoints/epoch_40.pth'
-pretrained_basemodel='./ffnet_work_dir/work_dir_spd_baseline-V1/epoch_4.pth'
-work_dir = './ffnet_work_dir/work_dir_spd_ffnet-V1'
+pretrained_basemodel='./ffnet_work_dir/pretrained-checkpoints/ffnet_basemodel_v2x_spd.pth'
+work_dir = './ffnet_work_dir/work_dir_spd_ffnet'
 
 class_names = ['Pedestrian', 'Cyclist', 'Car']
 point_cloud_range = [0, -46.08, -3, 92.16, 46.08, 1]
