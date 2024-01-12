@@ -8,7 +8,7 @@ data_info_train_path = './data/v2x-seq/flow_data_jsons/flow_data_info_train_2.js
 data_info_val_path = './data/v2x-seq/flow_data_jsons/flow_data_info_val_0.json'
 flownet_test_mode='FlowPred' # {'FlowPred', 'OriginFeat', 'Async'}
 #################################################################################### 
-pretrained_basemodel='./ffnet_work_dir/pretrained-checkpoints/ffnet_basemodel_v2x_spd.pth'
+pretrained_basemodel='./ffnet_work_dir/release-checkpoints/ffnet-pretrained-v2x-spd.pth'
 work_dir = './ffnet_work_dir/work_dir_spd_ffnet'
 
 class_names = ['Pedestrian', 'Cyclist', 'Car']
