@@ -227,7 +227,7 @@ if __name__ == "__main__":
         #     inf_pcd.pc_data['y'][ii] = i2v_point[1]
         #     inf_pcd.pc_data['z'][ii] = i2v_point[2]
         #     inf_pcd.pc_data['intensity'][ii] = inf_pcd.pc_data['intensity'][ii] / 255
-        #         i2v_pcd_save_path = os.path.join(dair_v2x_c_root, 'cooperative/velodyne_i2v/' + veh_idx + '.pcd')
+        # i2v_pcd_save_path = os.path.join(dair_v2x_c_root, 'cooperative/velodyne_i2v/' + veh_idx + '.pcd')
         # pypcd.save_point_cloud(inf_pcd, i2v_pcd_save_path)
         # i2v_bin_save_path = os.path.join(dair_v2x_c_root, 'cooperative/velodyne_i2v/' + veh_idx + '.bin')
         # pcd2bin(i2v_pcd_save_path, i2v_bin_save_path)
