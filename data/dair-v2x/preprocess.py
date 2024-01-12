@@ -191,6 +191,8 @@ if __name__ == "__main__":
 
     for c_json in tqdm(c_jsons):
         inf_idx = c_json['infrastructure_image_path'].split('/')[-1].replace('.jpg', '')
+        if inf_idx == "006315":
+            continue
         inf_lidar2world_path = os.path.join(dair_v2x_c_root,
                                             'infrastructure-side/calib/virtuallidar_to_world/' + inf_idx + '.json')
         veh_idx = c_json['vehicle_image_path'].split('/')[-1].replace('.jpg', '')
@@ -260,7 +262,7 @@ if __name__ == "__main__":
     # Complementary process:  missing infrastructure point clouds
     c_jsons_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/data_info.json')
     c_jsons = read_json(c_jsons_path)
-    for c_json in c_jsons:
+    for c_json in  tqdm(c_jsons):
         inf_idx = c_json['pointcloud_path'].split('/')[-1].replace('.pcd', '')
         pcd_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.pcd')
         bin_save_path = os.path.join(dair_v2x_c_root, 'infrastructure-side/velodyne/' + inf_idx + '.bin')
