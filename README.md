@@ -50,13 +50,15 @@ We provide the preprocessed example data [example-cooperative-vehicle-infrastruc
 
 ## Evaluation
 
-Download `trained weights`. 
-(
-[FFNET Trainded Checkpoint](https://drive.google.com/file/d/1eX2wZ7vSxq8y9lAyjHyrmBQ30qNHcFC6/view?usp=sharing) | [FFNET without prediction](https://drive.google.com/file/d/14ujtkGVMGGdvHnmEAUDArny6HKbYM_ye/view?usp=sharing) 
-| [FFNET-V2 without prediction](https://drive.google.com/file/d/1_-C4MfUeC-6MXPDZlx6LTM48Tl8gdZpR/view?usp=sharing)
-)
+Step 1: Download `trained weights`. 
+- FFNET trained on DAIR-V2X
+([FFNET Trainded Checkpoint](https://drive.google.com/file/d/1eX2wZ7vSxq8y9lAyjHyrmBQ30qNHcFC6/view?usp=sharing) | [FFNET without prediction](https://drive.google.com/file/d/14ujtkGVMGGdvHnmEAUDArny6HKbYM_ye/view?usp=sharing) 
+| [FFNET-V2 without prediction](https://drive.google.com/file/d/1_-C4MfUeC-6MXPDZlx6LTM48Tl8gdZpR/view?usp=sharing))
 
-Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/tree/main/configs/vic3d/middle-fusion-pointcloud/ffnet) for evaluating FFNet with OpenDAIRV2X. 
+- FFNET trained on V2X-Seq-SPD
+([ffnet-v2x-spd.pth](https://drive.google.com/file/d/1k-WIcGvGY4YF02ITMTTIDdPblA2cjaji/view?usp=sharing) | [ffnet-pretrained-v2x-spd.pth](https://drive.google.com/file/d/1LZACi8OLEVvFqz7bjsTwo0-Y_Imbp4sK/view?usp=sharing))
+
+Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/tree/main/configs/vic3d/middle-fusion-pointcloud/ffnet) for evaluating FFNet with OpenDAIRV2X on DAIR-V2X-C dataset. 
 
 Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 100ms latency:
 
