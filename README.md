@@ -56,7 +56,7 @@ Download `trained weights`.
 | [FFNET-V2 without prediction](https://drive.google.com/file/d/1_-C4MfUeC-6MXPDZlx6LTM48Tl8gdZpR/view?usp=sharing)
 )
 
-Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/tree/main/configs/vic3d/middle-fusion-pointcloud/ffnet/README.md) for evaluating FFNet with OpenDAIRV2X. 
+Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/tree/main/configs/vic3d/middle-fusion-pointcloud/ffnet) for evaluating FFNet with OpenDAIRV2X. 
 
 Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 100ms latency:
 
