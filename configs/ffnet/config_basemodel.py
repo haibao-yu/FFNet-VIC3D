@@ -2,7 +2,7 @@ dataset_type = 'V2XDataset'
 data_root = './data/dair-v2x/DAIR-V2X/cooperative-vehicle-infrastructure/'
 data_info_train_path = './data/dair-v2x/flow_data_jsons/flow_data_info_train.json'
 data_info_val_path = './data/dair-v2x/flow_data_jsons/flow_data_info_val_0.json'
-work_dir = './ffnet_work_dir/work_dir_baseline-V1'
+work_dir = './ffnet_work_dir/work_dir_baseline'
 
 class_names = ['Pedestrian', 'Cyclist', 'Car']
 point_cloud_range = [0, -46.08, -3, 92.16, 46.08, 1]
@@ -295,7 +295,7 @@ data = dict(
         pcd_limit_range=point_cloud_range,
         box_type_3d='LiDAR'))
 evaluation = dict(
-    interval=5,
+    interval=100,
     pipeline=[
         dict(
             type='LoadPointsFromFile',

@@ -295,7 +295,7 @@ data = dict(
         pcd_limit_range=point_cloud_range,
         box_type_3d='LiDAR'))
 evaluation = dict(
-    interval=40,
+    interval=100,
     pipeline=[
         dict(
             type='LoadPointsFromFile',

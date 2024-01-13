@@ -8,7 +8,7 @@ data_info_train_path='./data/dair-v2x/flow_data_jsons/flow_data_info_train_2.jso
 data_info_val_path='./data/dair-v2x/flow_data_jsons/flow_data_info_val_2.json'
 flownet_test_mode='FlowPred' # {'FlowPred', 'OriginFeat', 'Async'}
 #################################################################################### 
-pretrained_basemodel='./ffnet_work_dir/pretrained-checkpoints/epoch_40.pth'
+pretrained_basemodel='./ffnet_work_dir/release-checkpoints/ffnet-pretrained.pth'
 work_dir = './ffnet_work_dir/work_dir_ffnet'
 
 class_names = ['Pedestrian', 'Cyclist', 'Car']
@@ -281,7 +281,7 @@ data = dict(
         pcd_limit_range=point_cloud_range,
         box_type_3d='LiDAR'))
 evaluation = dict(
-    interval=2,
+    interval=100,
     pipeline=[
         dict(
             type='LoadPointsFromFile',

@@ -58,37 +58,43 @@ Step 1: Download `trained weights`.
 - FFNET trained on V2X-Seq-SPD
 ([ffnet-v2x-spd.pth](https://drive.google.com/file/d/1k-WIcGvGY4YF02ITMTTIDdPblA2cjaji/view?usp=sharing) | [ffnet-pretrained-v2x-spd.pth](https://drive.google.com/file/d/1LZACi8OLEVvFqz7bjsTwo0-Y_Imbp4sK/view?usp=sharing))
 
-Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/tree/main/configs/vic3d/middle-fusion-pointcloud/ffnet) for evaluating FFNet with OpenDAIRV2X on DAIR-V2X-C dataset. 
+Step 2: Inference
+- Please refer [OpenDAIRV2X](https://github.com/AIR-THU/DAIR-V2X/tree/main/configs/vic3d/middle-fusion-pointcloud/ffnet) for evaluating FFNet with OpenDAIRV2X on DAIR-V2X-C dataset.
 
-Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 100ms latency:
+- Example: evaluate ```FFNET``` on ```DAIR-V2X-C-Example``` with 100ms latency:
 
-```
-# modify the DATA to point to DAIR-V2X-C-Example in script ${OpenDAIRV2X_root}/v2x/scripts/lidar_feature_flow.sh
-# bash scripts/lidar_feature_flow.sh [YOUR_CUDA_DEVICE] [YOUR_FFNET_WORKDIR] [DELAY_K] 
-cd ${OpenDAIRV2X_root}/v2x
-bash scripts/lidar_feature_flow.sh 0 /home/yuhaibao/FFNet-VIC3D 1
-```
+  ```
+  # modify the DATA to point to DAIR-V2X-C-Example in script ${OpenDAIRV2X_root}/v2x/scripts/lidar_feature_flow.sh
+  # bash scripts/lidar_feature_flow.sh [YOUR_CUDA_DEVICE] [YOUR_FFNET_WORKDIR] [DELAY_K] 
+  cd ${OpenDAIRV2X_root}/v2x
+  bash scripts/lidar_feature_flow.sh 0 /home/yuhaibao/FFNet-VIC3D 1
+  ```
 
 ## Training
 
-Firstly, train the basemodel on ```DAIR-V2X``` without latency
-```
-# Single-gpu training
-cd ${FFNET-VIC_repo}
-export PYTHONPATH=$PYTHONPATH:./
-CUDA_VISIBLE_DEVICES=$1 python tools/train.py configs/config_basemodel.py
-```
+Step1: Train the basemodel on ```DAIR-V2X``` without latency
+- Single-gpu training
+  ```
+  cd ${FFNET-VIC_repo}
+  export PYTHONPATH=$PYTHONPATH:./
+  CUDA_VISIBLE_DEVICES=${GPU_ID} python tools/train.py configs/config_basemodel.py
+  ```
+- or, Multi-gpu Training
+  ```
+  cd ${FFNET-VIC_repo}
+  export PYTHONPATH=$PYTHONPATH:./
+  CUDA_VISIBLE_DEVICES=${GPU_IDs} bash tools/dist_train.sh configs/config_basemodel.py ${GPU_NUM}
+  ```
 
-Secondly, put the trained basemodel in a folder ```ffnet_work_dir/pretrained-checkpoints```.
+Step 2: Put the trained basemodel in a folder ```ffnet_work_dir/release-checkpoints``` as ```ffnet_work_dir/release-checkpoints/ffnet-pretrained.pth```.
 
-Thirdly, train ```FFNET``` on ```DAIR-V2X``` with latency
-
-```
-# Single-gpu training
-cd ${FFNET-VIC_repo}
-export PYTHONPATH=$PYTHONPATH:./
-CUDA_VISIBLE_DEVICES=$1 python tools/train.py configs/config_ffnet.py
-```
+Step 3: Train ```FFNET``` on ```DAIR-V2X``` with latency
+- Single-gpu training (Not supported multi-GPU training now)
+  ```
+  cd ${FFNET-VIC_repo}
+  export PYTHONPATH=$PYTHONPATH:./
+  CUDA_VISIBLE_DEVICES=${GPU_ID} python tools/train.py configs/config_ffnet.py
+  ```
 
 ## Citation
 ```latex
