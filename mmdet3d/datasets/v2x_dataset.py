@@ -297,8 +297,11 @@ class V2XDataset(Custom3DDataset):
         dims = annos['dimensions']
         rots = annos['rotation_y']
         gt_names = annos['name']
-        gt_bboxes_3d = np.concatenate([loc, dims, rots[..., np.newaxis]],
-                                      axis=1).astype(np.float32)
+        if len(loc) != 0:
+            gt_bboxes_3d = np.concatenate([loc, dims, rots[..., np.newaxis]],
+                                          axis=1).astype(np.float32)
+        else:   # cosidering no label in this scene
+            gt_bboxes_3d = np.array([], dtype=np.float64)
 
         # convert gt_bboxes_3d to velodyne coordinates
         gt_bboxes_3d = CameraInstance3DBoxes(gt_bboxes_3d).convert_to(
