@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.datasets.builder import build_dataloader
+from mmdet.datasets.builder import DATASETS as MMDET_DATASETS, build_dataloader
 from .builder import DATASETS, build_dataset
 from .custom_3d import Custom3DDataset
 from .custom_3d_seg import Custom3DSegDataset
@@ -9,6 +9,12 @@ from .lyft_dataset import LyftDataset
 from .nuscenes_dataset import NuScenesDataset
 from .nuscenes_mono_dataset import NuScenesMonoDataset
 from .v2x_dataset import V2XDataset
+# Register V2XDataset into mmdet's DATASETS registry so that mmdet's dataset
+# wrappers (e.g., RepeatDataset) can build the wrapped V2XDataset, which
+# would otherwise raise "KeyError: 'V2XDataset is not in the dataset
+# registry'".
+if 'V2XDataset' not in MMDET_DATASETS._module_dict:
+    MMDET_DATASETS.register_module(module=V2XDataset)
 # yapf: disable
 from .pipelines import (BackgroundPointsFilter, GlobalAlignment,
                         GlobalRotScaleTrans, IndoorPatchPointSample,
